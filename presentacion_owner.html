@@ -3,413 +3,465 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Estrategia OEM — Mercado Libre | hotic.</title>
+<title>Estrategia OEM · hotic.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-/* ── RESET & VARS ─────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ── RESET ──────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ── TOKENS ─────────────────────────────────── */
 :root {
-  --brand:   #1A33D4;   /* hotic. blue */
-  --brand-d: #1228A8;   /* darker hover */
-  --brand-l: #e8ecfc;   /* light tint */
-  --navy:    #0d1b3e;
-  --green:   #059669;
-  --green-l: #d1fae5;
-  --red:     #dc2626;
-  --red-l:   #fee2e2;
-  --amber:   #d97706;
-  --amber-l: #fef3c7;
-  --slate:   #475569;
-  --border:  #e2e8f0;
-  --bg:      #f1f5f9;
-  --white:   #ffffff;
-  --text:    #0f172a;
+  --vw-navy:   #001E50;   /* VW primary */
+  --h-blue:    #1A33D4;   /* hotic. blue */
+  --h-blue-d:  #1228A8;
+  --h-blue-l:  #EEF1FD;
+  --white:     #FFFFFF;
+  --off-white: #F5F6F8;
+  --gray-100:  #F0F2F5;
+  --gray-200:  #DFE4E8;
+  --gray-400:  #9BAAB8;
+  --gray-600:  #475569;
+  --gray-900:  #0D1117;
+  --green:     #0D7A4E;
+  --green-l:   #D7F5E8;
+  --red:       #C0001A;
+  --red-l:     #FCEAEC;
+  --amber:     #B45309;
+  --amber-l:   #FEF3C7;
 }
 
+/* ── BASE ───────────────────────────────────── */
 body {
-  font-family: 'Inter', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  font-size: 15px;
-  line-height: 1.6;
+  font-family: 'Manrope', sans-serif;
+  background: var(--gray-100);
+  color: var(--vw-navy);
+  font-size: 14px;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
 
-/* ── LOGO SVG INLINE ───────────────────────────── */
-.logo-svg {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--brand);
-  border-radius: 6px;
-  padding: 5px 10px;
+/* ────────────────────────────────────────────
+   LOGO WORDMARK — integrado, no badge
+   ─────────────────────────────────────────── */
+.wm {               /* base wordmark */
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
   font-size: 18px;
-  font-weight: 900;
-  color: #fff;
   letter-spacing: -.5px;
   line-height: 1;
-  font-style: normal;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0;
   text-decoration: none;
 }
-.logo-svg.sm {
-  font-size: 13px;
-  padding: 3px 7px;
-  border-radius: 4px;
-}
-.logo-svg.lg {
-  font-size: 28px;
-  padding: 8px 16px;
-  border-radius: 8px;
-}
+.wm-text { color: inherit; }           /* inherits from parent */
+.wm-dot  { color: var(--h-blue); }    /* always hotic. blue */
 
-/* ── SLIDE WRAPPER ─────────────────────────────── */
+/* size variants */
+.wm-xl   { font-size: 36px; }
+.wm-lg   { font-size: 24px; }
+.wm-sm   { font-size: 13px; font-weight: 700; }
+
+/* color variants */
+.wm-white .wm-text { color: #fff; }
+.wm-white .wm-dot  { color: rgba(255,255,255,.55); }
+.wm-navy  .wm-text { color: var(--vw-navy); }
+.wm-navy  .wm-dot  { color: var(--h-blue); }
+
+/* ── SLIDE SHELL ─────────────────────────────── */
 .slide {
-  width: min(960px, 100%);
-  margin: 24px auto;
+  width: min(980px, 100%);
+  margin: 20px auto;
   background: var(--white);
-  border-radius: 14px;
-  box-shadow: 0 2px 20px rgba(0,0,0,.08), 0 0 0 1px rgba(0,0,0,.04);
+  box-shadow: 0 1px 4px rgba(0,30,80,.08), 0 4px 24px rgba(0,30,80,.06);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   page-break-after: always;
 }
 
-/* ── PORTADA ───────────────────────────────────── */
+/* ── TOPBAR (replaces old "slide-header") ─────── */
+.topbar {
+  background: var(--vw-navy);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 36px;
+}
+.topbar-section {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+}
+.topbar-page {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255,255,255,.4);
+  letter-spacing: .06em;
+}
+
+/* ── BODY ────────────────────────────────────── */
+.body {
+  padding: clamp(24px, 3.5vw, 44px) clamp(24px, 4vw, 52px);
+  flex: 1;
+}
+.h1 {
+  font-size: clamp(20px, 3vw, 30px);
+  font-weight: 800;
+  color: var(--vw-navy);
+  line-height: 1.15;
+  margin-bottom: 4px;
+  letter-spacing: -.4px;
+}
+.h1 span { color: var(--h-blue); }
+.lead {
+  font-size: 12.5px;
+  color: var(--gray-600);
+  margin-bottom: 24px;
+  font-weight: 400;
+}
+
+/* ── FOOTER ──────────────────────────────────── */
+.foot {
+  border-top: 1px solid var(--gray-200);
+  padding: 10px 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--white);
+}
+.foot-copy { font-size: 10px; color: var(--gray-400); letter-spacing: .04em; }
+
+/* ── PORTADA ─────────────────────────────────── */
 .cover {
-  background: var(--brand);
-  color: #fff;
-  padding: clamp(36px, 6vw, 72px) clamp(28px, 5vw, 64px);
-  min-height: 420px;
+  background: var(--vw-navy);
+  min-height: 500px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  padding: clamp(32px, 5vw, 64px);
   position: relative;
   overflow: hidden;
 }
+/* geometric accent */
 .cover::before {
   content: '';
   position: absolute;
-  top: -120px; right: -120px;
-  width: 420px; height: 420px;
+  right: -100px; bottom: -100px;
+  width: 500px; height: 500px;
+  border: 1px solid rgba(255,255,255,.06);
   border-radius: 50%;
-  background: rgba(255,255,255,.07);
   pointer-events: none;
 }
 .cover::after {
   content: '';
   position: absolute;
-  bottom: -80px; left: 40%;
-  width: 280px; height: 280px;
+  right: 40px; bottom: 40px;
+  width: 300px; height: 300px;
+  border: 1px solid rgba(255,255,255,.06);
   border-radius: 50%;
-  background: rgba(255,255,255,.05);
   pointer-events: none;
 }
-.cover-top { display: flex; justify-content: space-between; align-items: flex-start; }
-.cover-tag {
-  font-size: 11px;
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: auto;
+}
+.cover-eyebrow {
+  font-size: 10px;
   font-weight: 600;
-  letter-spacing: .12em;
+  letter-spacing: .16em;
   text-transform: uppercase;
-  background: rgba(255,255,255,.15);
-  color: #fff;
-  border-radius: 999px;
-  padding: 5px 14px;
+  color: rgba(255,255,255,.45);
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  margin-bottom: 32px;
+  width: 100%;
 }
-.cover-body { position: relative; z-index: 1; }
+.cover-main { flex: 1; position: relative; z-index: 1; }
 .cover-title {
-  font-size: clamp(28px, 4.5vw, 46px);
-  font-weight: 900;
-  line-height: 1.1;
-  margin-bottom: 14px;
+  font-size: clamp(30px, 5.5vw, 52px);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.08;
+  letter-spacing: -.8px;
+  margin-bottom: 20px;
 }
-.cover-title em { font-style: normal; opacity: .7; }
+.cover-title em {
+  font-style: normal;
+  color: rgba(255,255,255,.4);
+  font-weight: 300;
+}
 .cover-sub {
-  font-size: clamp(13px, 1.8vw, 16px);
+  font-size: clamp(13px, 1.6vw, 15px);
+  color: rgba(255,255,255,.6);
+  max-width: 520px;
+  line-height: 1.7;
+  margin-bottom: 40px;
   font-weight: 400;
-  opacity: .85;
-  max-width: 560px;
-  line-height: 1.6;
 }
-.cover-pills {
+.cover-stats {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  position: relative;
-  z-index: 1;
+  gap: 0;
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding-top: 28px;
 }
-.cover-pill {
-  background: rgba(255,255,255,.15);
-  border: 1px solid rgba(255,255,255,.25);
-  border-radius: 999px;
-  padding: 6px 16px;
-  font-size: 12px;
-  font-weight: 500;
-}
-.cover-pill strong { display: block; font-size: 15px; font-weight: 800; }
-
-/* ── SLIDE HEADER ──────────────────────────────── */
-.s-head {
-  background: var(--navy);
-  color: #fff;
-  padding: 12px 28px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-}
-.s-head .chip {
-  background: var(--brand);
-  color: #fff;
-  border-radius: 999px;
-  padding: 3px 10px;
-  font-size: 11px;
-  font-weight: 700;
-}
-
-/* ── SLIDE BODY ────────────────────────────────── */
-.s-body {
-  padding: clamp(20px, 3vw, 36px) clamp(20px, 4vw, 48px);
+.cover-stat {
   flex: 1;
+  min-width: 120px;
+  padding-right: 24px;
+  border-right: 1px solid rgba(255,255,255,.1);
+  margin-right: 24px;
 }
-.s-title {
-  font-size: clamp(18px, 2.8vw, 26px);
+.cover-stat:last-child { border-right: none; margin-right: 0; }
+.cs-num {
+  font-size: clamp(24px, 3vw, 32px);
   font-weight: 800;
-  color: var(--navy);
+  color: #fff;
+  line-height: 1;
   margin-bottom: 4px;
-  line-height: 1.2;
 }
-.s-lead {
-  font-size: 13px;
-  color: var(--slate);
-  margin-bottom: 22px;
-}
-.s-foot {
-  background: #f8fafc;
-  border-top: 1px solid var(--border);
-  padding: 9px 28px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 11px;
-  color: #94a3b8;
-}
+.cs-lbl { font-size: 11px; color: rgba(255,255,255,.4); font-weight: 400; }
 
-/* ── GRID HELPERS ──────────────────────────────── */
+/* ── GRID ─────────────────────────────────────── */
 .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-.g4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
 
-/* ── CARDS ─────────────────────────────────────── */
-.card {
-  background: #f8fafc;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 18px;
+/* ── STAT CARD ────────────────────────────────── */
+.sc {
+  padding: 20px;
+  border: 1px solid var(--gray-200);
+  border-top: 3px solid var(--h-blue);
+  background: var(--white);
 }
-.card.accent { border-left: 3px solid var(--brand); background: var(--brand-l); }
-.card.green  { border-left: 3px solid var(--green); }
-.card.red    { border-left: 3px solid var(--red); }
-.card.amber  { border-left: 3px solid var(--amber); }
-.c-label { font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--slate); margin-bottom: 4px; }
-.c-val   { font-size: clamp(22px, 3vw, 30px); font-weight: 900; color: var(--navy); line-height: 1; }
-.c-desc  { font-size: 11px; color: var(--slate); margin-top: 5px; }
-.c-title { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
-.c-text  { font-size: 12px; color: var(--slate); line-height: 1.55; }
+.sc-lbl { font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 6px; }
+.sc-val { font-size: clamp(24px, 3vw, 32px); font-weight: 800; color: var(--vw-navy); line-height: 1; margin-bottom: 4px; }
+.sc-sub { font-size: 11px; color: var(--gray-600); }
 
-/* ── TABLE ─────────────────────────────────────── */
-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-th { background: var(--navy); color: #fff; padding: 9px 13px; text-align: left; font-size: 11px; font-weight: 600; letter-spacing: .04em; }
-td { padding: 9px 13px; border-bottom: 1px solid var(--border); vertical-align: top; }
-tr:nth-child(even) td { background: #f8fafc; }
-tr:last-child td { border-bottom: none; }
+/* ── TABLE ────────────────────────────────────── */
+.tbl { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.tbl th {
+  background: var(--vw-navy);
+  color: #fff;
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.tbl td { padding: 9px 14px; border-bottom: 1px solid var(--gray-200); vertical-align: top; color: var(--gray-900); }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tr:hover td { background: var(--gray-100); }
 
-/* ── BADGES ────────────────────────────────────── */
-.b { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
-.b-green  { background: var(--green-l); color: #065f46; }
-.b-red    { background: var(--red-l);   color: #991b1b; }
-.b-amber  { background: var(--amber-l); color: #92400e; }
-.b-blue   { background: var(--brand-l); color: var(--brand-d); }
+/* ── BADGE ─────────────────────────────────────── */
+.bx { display: inline-block; padding: 2px 8px; font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+.bx-g { background: var(--green-l); color: var(--green); }
+.bx-r { background: var(--red-l);   color: var(--red); }
+.bx-a { background: var(--amber-l); color: var(--amber); }
+.bx-b { background: var(--h-blue-l); color: var(--h-blue-d); }
 
-/* ── ALERTS ────────────────────────────────────── */
-.al { border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 12.5px; line-height: 1.55; }
-.al-green  { background: var(--green-l); border-left: 3px solid var(--green);  color: #064e3b; }
-.al-red    { background: var(--red-l);   border-left: 3px solid var(--red);    color: #7f1d1d; }
-.al-amber  { background: var(--amber-l); border-left: 3px solid var(--amber);  color: #78350f; }
-.al-blue   { background: var(--brand-l); border-left: 3px solid var(--brand);  color: var(--brand-d); }
+/* ── ALERT ──────────────────────────────────────── */
+.al { padding: 14px 18px; margin: 12px 0; font-size: 12.5px; line-height: 1.6; border-left: 3px solid; }
+.al-g { background: var(--green-l); border-color: var(--green); color: #064e3b; }
+.al-r { background: var(--red-l);   border-color: var(--red);   color: #7f1d1d; }
+.al-a { background: var(--amber-l); border-color: var(--amber); color: #78350f; }
+.al-b { background: var(--h-blue-l);border-color: var(--h-blue);color: var(--h-blue-d); }
 
-/* ── CHECKLIST ─────────────────────────────────── */
+/* ── CHECKLIST ──────────────────────────────────── */
 .chk { list-style: none; }
-.chk li { padding: 6px 0 6px 24px; position: relative; font-size: 12.5px; border-bottom: 1px solid var(--border); color: #334155; }
+.chk li { padding: 7px 0 7px 22px; position: relative; font-size: 12.5px; border-bottom: 1px solid var(--gray-200); color: var(--gray-900); }
 .chk li:last-child { border-bottom: none; }
-.chk li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 800; }
+.chk li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 800; font-size: 11px; top: 9px; }
 .chk li.no::before { content: '✗'; color: var(--red); }
+
+/* ── DIVIDER ROW ───────────────────────────────── */
+.vrow { display: flex; gap: 14px; align-items: flex-start; padding: 11px 0; border-bottom: 1px solid var(--gray-200); }
+.vrow:last-child { border-bottom: none; }
+.vrow-ic { font-size: 18px; flex-shrink: 0; width: 26px; padding-top: 1px; }
+.vrow h4 { font-size: 12.5px; font-weight: 700; color: var(--vw-navy); margin-bottom: 2px; }
+.vrow p  { font-size: 11.5px; color: var(--gray-600); line-height: 1.5; }
 
 /* ── CODE BOX ──────────────────────────────────── */
 .code {
-  background: #0f172a;
-  color: #e2e8f0;
-  border-radius: 8px;
-  padding: 14px 18px;
+  background: var(--vw-navy);
+  color: rgba(255,255,255,.85);
+  padding: 16px 20px;
   font-family: 'Courier New', monospace;
   font-size: 12px;
-  line-height: 1.65;
+  line-height: 1.7;
   margin: 10px 0;
 }
-.code .hl { color: #fbbf24; font-weight: 700; }
+.code .hl { color: #60a5fa; font-weight: 700; }
 .code .ok { color: #34d399; }
 
 /* ── PRICE BAR ─────────────────────────────────── */
-.pbar { margin: 6px 0 12px; }
-.pbar-lbl { display: flex; justify-content: space-between; font-size: 11.5px; margin-bottom: 3px; color: var(--slate); }
-.pbar-track { height: 10px; background: var(--border); border-radius: 5px; overflow: hidden; }
-.pbar-fill  { height: 100%; border-radius: 5px; }
-
-/* ── VAL ROW ───────────────────────────────────── */
-.vrow { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border); }
-.vrow:last-child { border-bottom: none; }
-.vrow-ic { font-size: 18px; flex-shrink: 0; width: 26px; text-align: center; padding-top: 2px; }
-.vrow h4 { font-size: 12.5px; font-weight: 700; color: var(--navy); margin-bottom: 1px; }
-.vrow p  { font-size: 11.5px; color: var(--slate); }
+.pb { margin: 0 0 14px; }
+.pb-row { display: flex; justify-content: space-between; font-size: 11.5px; margin-bottom: 4px; color: var(--gray-600); }
+.pb-track { height: 8px; background: var(--gray-200); }
+.pb-fill  { height: 100%; transition: width .4s ease; }
 
 /* ── ML MOCKUP ─────────────────────────────────── */
-.ml-wrap { display: grid; grid-template-columns: 300px 1fr; gap: 22px; align-items: start; }
-.ml-gallery-main {
-  border-radius: 10px; border: 1px solid var(--border);
-  background: #f8f8f8; height: 210px;
-  display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 6px;
+.ml-wrap { display: grid; grid-template-columns: 280px 1fr; gap: 24px; }
+.ml-img-main {
+  border: 1px solid var(--gray-200);
+  background: var(--gray-100);
+  height: 200px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  margin-bottom: 6px;
 }
-.ml-gallery-main img { max-width: 100%; max-height: 210px; object-fit: contain; }
+.ml-img-main img { max-width: 100%; max-height: 200px; object-fit: contain; }
 .ml-thumbs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
 .ml-thumb {
-  border-radius: 7px; border: 1px solid var(--border);
-  background: #f8f8f8; height: 90px;
+  border: 1px solid var(--gray-200);
+  background: var(--gray-100);
+  height: 84px;
   display: flex; align-items: center; justify-content: center; overflow: hidden;
 }
-.ml-thumb img { max-width: 100%; max-height: 90px; object-fit: contain; }
-.ml-title { font-size: 17px; font-weight: 800; color: var(--navy); line-height: 1.25; margin-bottom: 6px; }
-.ml-title .oem { color: var(--brand); }
-.ml-stars { color: #f59e0b; font-size: 13px; margin-bottom: 8px; }
-.ml-price-big { font-size: 30px; font-weight: 900; color: var(--navy); margin: 4px 0; }
-.ml-green-text { font-size: 11.5px; color: var(--green); margin-bottom: 2px; }
-.ml-muted { font-size: 11px; color: #94a3b8; margin-bottom: 10px; }
-.ml-bulk { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 7px; padding: 9px 12px; margin-bottom: 12px; font-size: 12.5px; }
-.ml-desc { border: 1px solid var(--border); border-radius: 8px; padding: 12px; background: #fafafa; font-size: 12px; color: var(--slate); line-height: 1.55; }
-.ml-desc-title { font-weight: 700; color: var(--navy); margin-bottom: 4px; font-size: 13px; }
-.ml-desc-key { color: #059669; font-weight: 600; }
+.ml-thumb img { max-width: 100%; max-height: 84px; object-fit: contain; }
+.ml-no-img { font-size: 11px; color: var(--gray-400); text-align: center; padding: 12px; }
 
-/* ── ANNOT STRIP ───────────────────────────────── */
-.annots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 16px; }
-.annot {
-  background: var(--green-l); border-radius: 8px; padding: 10px;
-  text-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px;
+/* ── ANNOT STRIP ────────────────────────────────── */
+.astrip { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; margin-top: 18px; border: 1px solid var(--gray-200); }
+.aitem {
+  padding: 14px 16px;
+  border-right: 1px solid var(--gray-200);
+  display: flex; align-items: flex-start; gap: 10px;
 }
-.annot-ic { font-size: 16px; }
-.annot-t  { font-size: 11px; font-weight: 700; color: #065f46; }
-.annot-s  { font-size: 10px; color: #047857; }
+.aitem:last-child { border-right: none; }
+.aitem-ic { font-size: 18px; flex-shrink: 0; }
+.aitem-t { font-size: 12px; font-weight: 700; color: var(--green); margin-bottom: 1px; }
+.aitem-s { font-size: 10.5px; color: var(--gray-600); }
 
-/* ── RESPONSIVE ────────────────────────────────── */
-@media (max-width: 700px) {
-  .g2, .g3, .g4 { grid-template-columns: 1fr; }
-  .ml-wrap       { grid-template-columns: 1fr; }
-  .annots        { grid-template-columns: 1fr 1fr; }
-  .cover-pills   { gap: 6px; }
-  .s-body        { padding: 16px 18px; }
+/* ── SECTION LABEL ───────────────────────────────── */
+.sec-num {
+  font-size: 56px;
+  font-weight: 800;
+  color: var(--gray-200);
+  line-height: 1;
+  letter-spacing: -2px;
+  margin-bottom: -8px;
 }
 
-/* ── PRINT ─────────────────────────────────────── */
+/* ── CLOSING CARD ─────────────────────────────────── */
+.close-card {
+  background: var(--vw-navy);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+.close-card p { font-size: 12px; color: rgba(255,255,255,.5); line-height: 1.6; }
+
+/* ── RESPONSIVE ─────────────────────────────────── */
+@media (max-width: 680px) {
+  .g2, .g3, .g4, .ml-wrap { grid-template-columns: 1fr; }
+  .astrip { grid-template-columns: 1fr 1fr; }
+  .aitem { border-bottom: 1px solid var(--gray-200); }
+  .cover-stats { gap: 16px 0; }
+  .cover-stat { border-right: none; margin-right: 0; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .cover-stat:last-child { border-bottom: none; }
+}
+
 @media print {
   body { background: #fff; }
-  .slide { margin: 0; border-radius: 0; box-shadow: none; width: 100%; break-after: page; }
+  .slide { margin: 0; box-shadow: none; width: 100%; break-after: page; }
 }
+
+/* utils */
+a { color: var(--h-blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+strong { font-weight: 700; }
+.mt8 { margin-top: 8px; } .mt12 { margin-top: 12px; } .mt16 { margin-top: 16px; } .mt20 { margin-top: 20px; }
+.mb8 { margin-bottom: 8px; } .mb12 { margin-bottom: 12px; } .mb16 { margin-bottom: 16px; }
 </style>
 </head>
 <body>
 
-<!-- ════════════════════════════════════════
-  SLIDE 1 — PORTADA
-════════════════════════════════════════ -->
+
+<!-- ══════ SLIDE 1 — PORTADA ══════ -->
 <div class="slide">
   <div class="cover">
     <div class="cover-top">
-      <span class="cover-tag">Informe estratégico · Junio 2026</span>
-      <span class="logo-svg lg">hotic.</span>
+      <div class="cover-eyebrow">Informe estratégico de comercialización &nbsp;·&nbsp; Junio 2026</div>
+      <span class="wm wm-xl wm-white" style="flex-shrink:0;"><span class="wm-text">hotic</span><span class="wm-dot">.</span></span>
     </div>
 
-    <div class="cover-body" style="margin:36px 0 32px;">
+    <div class="cover-main">
       <div class="cover-title">
-        Estrategia de Comercialización<br>
-        <em>Inventario Legítimo en</em><br>
-        Mercado Libre Argentina
+        Estrategia de Venta<br>
+        <em>en</em> Mercado Libre<br>
+        Argentina
       </div>
       <div class="cover-sub">
-        Fundamentos legales, validación de mercado y guía operativa para la venta del inventario de repuestos bajo la estrategia <strong>Original OEM hotic.</strong>
+        Fundamentos legales, validación de mercado y guía operativa para la comercialización del inventario "Legítimo" bajo la estrategia <strong style="color:rgba(255,255,255,.85)">Original OEM hotic.</strong>
       </div>
     </div>
 
-    <div class="cover-pills">
-      <div class="cover-pill"><strong>1.642</strong> SKUs en inventario</div>
-      <div class="cover-pill"><strong>16.765</strong> unidades totales</div>
-      <div class="cover-pill"><strong>1.871</strong> pastillas de freno</div>
-      <div class="cover-pill"><strong>20+</strong> modelos de vehículos</div>
+    <div class="cover-stats">
+      <div class="cover-stat">
+        <div class="cs-num">1.642</div>
+        <div class="cs-lbl">SKUs en inventario</div>
+      </div>
+      <div class="cover-stat">
+        <div class="cs-num">16.765</div>
+        <div class="cs-lbl">Unidades totales</div>
+      </div>
+      <div class="cover-stat">
+        <div class="cs-num">1.871</div>
+        <div class="cs-lbl">Pastillas de freno</div>
+      </div>
+      <div class="cover-stat">
+        <div class="cs-num">20+</div>
+        <div class="cs-lbl">Modelos de vehículos</div>
+      </div>
     </div>
   </div>
 </div>
 
 
-<!-- ════════════════════════════════════════
-  SLIDE 2 — INVENTARIO
-════════════════════════════════════════ -->
+<!-- ══════ SLIDE 2 — INVENTARIO ══════ -->
 <div class="slide">
-  <div class="s-head"><span>01 · El inventario</span><span class="chip">1 / 9</span></div>
-  <div class="s-body">
-    <div class="s-title">¿Qué tenemos para vender?</div>
-    <div class="s-lead">Repuestos importados hace ~10 años. Réplicas de calidad de piezas VW, Audi y Ford. Stock sin movimiento desde el cierre del local en 2020.</div>
+  <div class="topbar">
+    <span class="topbar-section">01 · El inventario</span>
+    <span class="topbar-page">1 / 9</span>
+  </div>
+  <div class="body">
+    <div class="sec-num">01</div>
+    <div class="h1">¿Qué tenemos para vender?</div>
+    <div class="lead">Repuestos importados hace ~10 años. Réplicas de calidad de piezas VW, Audi y Ford. Stock sin movimiento desde el cierre del local en 2020.</div>
 
-    <div class="g4" style="margin-bottom:22px;">
-      <div class="card accent">
-        <div class="c-label">SKUs únicos</div>
-        <div class="c-val">1.642</div>
-        <div class="c-desc">Referencias distintas</div>
-      </div>
-      <div class="card accent">
-        <div class="c-label">Unidades totales</div>
-        <div class="c-val">16.765</div>
-        <div class="c-desc">En depósito</div>
-      </div>
-      <div class="card accent">
-        <div class="c-label">Pastillas de freno</div>
-        <div class="c-val">1.871</div>
-        <div class="c-desc">85 SKUs · Prioridad #1</div>
-      </div>
-      <div class="card accent">
-        <div class="c-label">Vehículos cubiertos</div>
-        <div class="c-val">20+</div>
-        <div class="c-desc">VW, Audi y Ford</div>
-      </div>
+    <div class="g4 mb16">
+      <div class="sc"><div class="sc-lbl">SKUs únicos</div><div class="sc-val">1.642</div><div class="sc-sub">Referencias distintas</div></div>
+      <div class="sc"><div class="sc-lbl">Unidades totales</div><div class="sc-val">16.765</div><div class="sc-sub">En depósito</div></div>
+      <div class="sc"><div class="sc-lbl">Pastillas de freno</div><div class="sc-val">1.871</div><div class="sc-sub">85 SKUs · Prioridad #1</div></div>
+      <div class="sc"><div class="sc-lbl">Modelos cubiertos</div><div class="sc-val">20+</div><div class="sc-sub">VW, Audi y Ford</div></div>
     </div>
 
     <div class="g2">
       <div>
-        <div class="c-title" style="margin-bottom:8px;">Top categorías por unidades</div>
-        <table>
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-400);margin-bottom:10px;">Top categorías por unidades</div>
+        <table class="tbl">
           <tr><th>Categoría</th><th>Unidades</th><th>SKUs</th></tr>
           <tr><td>Filtros</td><td><strong>5.272</strong></td><td>97</td></tr>
           <tr><td>Bombas</td><td><strong>2.918</strong></td><td>86</td></tr>
-          <tr><td><strong style="color:var(--brand)">Pastillas de freno</strong></td><td><strong>1.871</strong></td><td><strong>85</strong></td></tr>
+          <tr><td><strong style="color:var(--h-blue)">Pastillas de freno</strong></td><td><strong>1.871</strong></td><td><strong>85</strong></td></tr>
           <tr><td>Bujías</td><td><strong>1.720</strong></td><td>—</td></tr>
           <tr><td>Discos de freno</td><td><strong>105</strong></td><td>23</td></tr>
         </table>
       </div>
       <div>
-        <div class="c-title" style="margin-bottom:8px;">Top vehículos — pastillas de freno</div>
-        <table>
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-400);margin-bottom:10px;">Top vehículos — pastillas de freno</div>
+        <table class="tbl">
           <tr><th>Vehículo</th><th>Unidades</th></tr>
           <tr><td>VW Golf</td><td>482</td></tr>
           <tr><td>Audi A3</td><td>442</td></tr>
@@ -422,131 +474,148 @@ tr:last-child td { border-bottom: none; }
       </div>
     </div>
   </div>
-  <div class="s-foot"><span class="logo-svg sm">hotic.</span><span>Estrategia OEM · Mercado Libre Argentina</span></div>
+  <div class="foot">
+    <span class="wm wm-sm wm-navy"><span class="wm-text">hotic</span><span class="wm-dot">.</span></span>
+    <span class="foot-copy">Estrategia OEM · Mercado Libre Argentina</span>
+  </div>
 </div>
 
 
-<!-- ════════════════════════════════════════
-  SLIDE 3 — LO QUE NO PODEMOS HACER
-════════════════════════════════════════ -->
+<!-- ══════ SLIDE 3 — EL PROBLEMA ══════ -->
 <div class="slide">
-  <div class="s-head"><span>02 · El problema</span><span class="chip">2 / 9</span></div>
-  <div class="s-body">
-    <div class="s-title">Lo que NO podemos hacer — y por qué</div>
-    <div class="s-lead">Dos opciones tentadoras que representan riesgos legales y comerciales concretos.</div>
+  <div class="topbar">
+    <span class="topbar-section">02 · El problema</span>
+    <span class="topbar-page">2 / 9</span>
+  </div>
+  <div class="body">
+    <div class="sec-num">02</div>
+    <div class="h1">Lo que <span>no</span> podemos hacer</div>
+    <div class="lead">Dos opciones tentadoras que representan riesgos legales y comerciales concretos.</div>
 
     <div class="g2">
       <div>
-        <div class="al al-red" style="margin-bottom:10px;"><strong>❌ Opción A: Vender como "Original VW"</strong></div>
+        <div class="al al-r mb12"><strong>❌ Opción A — Vender como "Original VW"</strong></div>
         <ul class="chk">
           <li class="no">El producto no tiene autorización de Volkswagen AG</li>
           <li class="no">Las cajas con logo VW son packaging réplica, no certificación</li>
           <li class="no">Decir "envío Original VW" es publicidad engañosa — Ley 24.240</li>
           <li class="no">Es falsificación de marca — Ley 22.362 — hasta 3 años de prisión</li>
-          <li class="no">Mercado Libre puede suspender la cuenta permanentemente</li>
+          <li class="no">Mercado Libre suspende la cuenta permanentemente</li>
           <li class="no">VW Argentina monitorea ML con Brand Protection 24/7</li>
         </ul>
       </div>
       <div>
-        <div class="al al-red" style="margin-bottom:10px;"><strong>❌ Opción B: Vender como "Textar"</strong></div>
+        <div class="al al-r mb12"><strong>❌ Opción B — Vender como "Textar"</strong></div>
         <ul class="chk">
           <li class="no">Textar es una marca real (Grupo TMD Friction) con distribución en Argentina</li>
           <li class="no">Usar su nombre en un producto que no es Textar = infracción de marca</li>
           <li class="no">Textar puede denunciar la publicación y la cuenta</li>
-          <li class="no">El comprador puede exigir certificado de calidad Textar — no existe</li>
+          <li class="no">El comprador puede exigir certificado Textar — no existe</li>
           <li class="no">Genera reclamos, devoluciones y calificaciones negativas</li>
-          <li class="no">Acumula infracción sobre VW (caja) y sobre Textar (nombre)</li>
+          <li class="no">Acumula dos infracciones: sobre VW (caja) y sobre Textar (nombre)</li>
         </ul>
       </div>
     </div>
 
-    <div class="al al-amber" style="margin-top:14px;">
+    <div class="al al-a mt16">
       <strong>¿Y lo que se vendía en mostrador sin problemas?</strong>&nbsp;
-      En un mostrador físico no había registro digital. Mercado Libre documenta cada publicación y cada venta. Los sistemas de Brand Protection escanean títulos, descripciones e imágenes en tiempo real. Las reglas cambiaron radicalmente.
+      En un mostrador físico no existía registro digital. Mercado Libre documenta cada publicación y cada venta. Los sistemas de Brand Protection escanean títulos, descripciones e imágenes en tiempo real. Lo que funcionaba en 2014 genera suspensión de cuenta en 2026.
     </div>
   </div>
-  <div class="s-foot"><span class="logo-svg sm">hotic.</span><span>Estrategia OEM · Mercado Libre Argentina</span></div>
+  <div class="foot">
+    <span class="wm wm-sm wm-navy"><span class="wm-text">hotic</span><span class="wm-dot">.</span></span>
+    <span class="foot-copy">Estrategia OEM · Mercado Libre Argentina</span>
+  </div>
 </div>
 
 
-<!-- ════════════════════════════════════════
-  SLIDE 4 — LA SOLUCIÓN
-════════════════════════════════════════ -->
+<!-- ══════ SLIDE 4 — LA SOLUCIÓN ══════ -->
 <div class="slide">
-  <div class="s-head"><span>03 · La solución</span><span class="chip">3 / 9</span></div>
-  <div class="s-body">
-    <div class="s-title">La estrategia: <span style="color:var(--brand)">Original OEM hotic.</span></div>
-    <div class="s-lead">Un marco 100% legal que aprovecha el SEO de "original", protege la cuenta y es honesto con el comprador.</div>
+  <div class="topbar">
+    <span class="topbar-section">03 · La solución</span>
+    <span class="topbar-page">3 / 9</span>
+  </div>
+  <div class="body">
+    <div class="sec-num">03</div>
+    <div class="h1">La estrategia: <span>Original OEM hotic.</span></div>
+    <div class="lead">Un marco 100% legal que aprovecha el SEO de "original", protege la cuenta y es transparente con el comprador.</div>
 
     <div class="g2">
       <div>
-        <div class="c-title" style="margin-bottom:10px;">¿Qué significa OEM?</div>
-        <div class="card" style="margin-bottom:12px;">
-          <div class="c-text">
-            <strong>OEM = Original Equipment Manufacturer.</strong> Término técnico de la industria automotriz global. Describe piezas que cumplen con las especificaciones técnicas, dimensiones y tolerancias del fabricante original, independientemente de quién las fabrica. <strong>No es una marca registrada. No es mentira. Es el descriptor técnico correcto.</strong>
-          </div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-400);margin-bottom:12px;">¿Qué significa OEM?</div>
+        <div style="background:var(--vw-navy);color:rgba(255,255,255,.85);padding:20px 22px;font-size:13px;line-height:1.7;margin-bottom:14px;">
+          <strong style="color:#fff;font-size:14px;">OEM = Original Equipment Manufacturer</strong><br>
+          Término técnico de la industria automotriz global. Describe piezas que cumplen con las especificaciones técnicas, dimensiones y tolerancias del fabricante original, independientemente de quién las fabrica.<br>
+          <span style="color:rgba(255,255,255,.5);font-size:11.5px;margin-top:8px;display:block;">No es una marca registrada. No es mentira. Es el descriptor técnico correcto.</span>
         </div>
-        <div class="al al-green">
-          <strong>Diferencia legal crítica:</strong><br>
-          "Original <strong>VW</strong>" → declara falsamente ser Volkswagen &nbsp;<span class="b b-red">Ilegal</span><br>
-          "Original <strong>OEM</strong>" → describe calidad equivalente &nbsp;<span class="b b-green">Legal ✓</span>
+        <div class="al al-g">
+          <strong>Diferencia legal crítica</strong><br>
+          "Original <strong>VW</strong>" → declara falsamente ser Volkswagen &nbsp;<span class="bx bx-r">Ilegal</span><br>
+          "Original <strong>OEM</strong>" → describe calidad equivalente &nbsp;<span class="bx bx-g">Legal ✓</span>
         </div>
       </div>
 
       <div>
-        <div class="c-title" style="margin-bottom:10px;">Los 5 componentes de la estrategia</div>
-        <div class="vrow"><div class="vrow-ic">📸</div><div><h4>Fotografía genérica con IA</h4><p>Sin logos de marca. Fondo blanco, aspecto profesional. Evita detección del Brand Protection Program.</p></div></div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-400);margin-bottom:12px;">Los 5 componentes</div>
+        <div class="vrow"><div class="vrow-ic">📸</div><div><h4>Fotografía genérica con IA</h4><p>Sin logos de marca. Fondo neutro, aspecto profesional. Evita detección del Brand Protection Program.</p></div></div>
         <div class="vrow"><div class="vrow-ic">🔍</div><div><h4>Título con "Original OEM" al final</h4><p>SEO legal: aparece en búsquedas de "original" sin declarar falsamente ser VW.</p></div></div>
-        <div class="vrow"><div class="vrow-ic">🏷️</div><div><h4>Marca: "Original OEM hotic."</h4><p>Nuestra marca registrada. Descriptor de calidad. 100% válido en ML.</p></div></div>
+        <div class="vrow"><div class="vrow-ic">🏷️</div><div><h4>Marca: "Original OEM hotic."</h4><p>Nuestra marca registrada más descriptor de calidad. 100% válido en Mercado Libre.</p></div></div>
         <div class="vrow"><div class="vrow-ic">📝</div><div><h4>Descripción transparente</h4><p>"No se vende bajo marca VW, pero cumple todos los estándares originales."</p></div></div>
-        <div class="vrow"><div class="vrow-ic">💰</div><div><h4>Precio 55–70% del original genuino</h4><p>Competitivo para autos de 14 a 30 años de antigüedad.</p></div></div>
+        <div class="vrow"><div class="vrow-ic">💰</div><div><h4>Precio 55–70% del original genuino</h4><p>Competitivo para el parque automotor de 14 a 30 años de antigüedad.</p></div></div>
       </div>
     </div>
   </div>
-  <div class="s-foot"><span class="logo-svg sm">hotic.</span><span>Estrategia OEM · Mercado Libre Argentina</span></div>
+  <div class="foot">
+    <span class="wm wm-sm wm-navy"><span class="wm-text">hotic</span><span class="wm-dot">.</span></span>
+    <span class="foot-copy">Estrategia OEM · Mercado Libre Argentina</span>
+  </div>
 </div>
 
 
-<!-- ════════════════════════════════════════
-  SLIDE 5 — ARMADO DE LA PUBLICACIÓN
-════════════════════════════════════════ -->
+<!-- ══════ SLIDE 5 — ARMADO DE PUBLICACIÓN ══════ -->
 <div class="slide">
-  <div class="s-head"><span>04 · Armado de la publicación</span><span class="chip">4 / 9</span></div>
-  <div class="s-body">
-    <div class="s-title">Cómo se arma cada publicación</div>
-    <div class="s-lead">Ejemplo sobre "Pastillas Delanteras Bora 1.9TDI / Fox / Suran" — 98 unidades en stock · N° original: 1J0698151G</div>
+  <div class="topbar">
+    <span class="topbar-section">04 · Armado de la publicación</span>
+    <span class="topbar-page">4 / 9</span>
+  </div>
+  <div class="body">
+    <div class="sec-num">04</div>
+    <div class="h1">Cómo se arma cada publicación</div>
+    <div class="lead">Ejemplo: Pastillas Delanteras Bora 1.9TDI / Fox / Suran — 98 unidades en stock · N° original: 1J0698151G</div>
 
     <div class="g2">
       <div>
-        <div class="card accent" style="margin-bottom:10px;">
-          <div class="c-label">Título SEO</div>
-          <div style="font-size:14px;font-weight:700;color:var(--navy);margin-top:4px;">Pastillas Freno Del. Bora 1.9TDI Fox Suran <span style="color:var(--brand)">Original OEM</span></div>
+        <div style="border:1px solid var(--gray-200);border-top:3px solid var(--h-blue);padding:16px 18px;margin-bottom:10px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-400);margin-bottom:6px;">Título SEO</div>
+          <div style="font-size:14px;font-weight:700;color:var(--vw-navy);line-height:1.35;">Pastillas Freno Del. Bora 1.9TDI Fox Suran <span style="color:var(--h-blue)">Original OEM</span></div>
         </div>
-        <div class="card" style="margin-bottom:10px;">
-          <div class="c-label">Marca declarada en ML</div>
-          <div style="font-size:14px;font-weight:700;margin-top:4px;">Original OEM <span class="logo-svg sm">hotic.</span></div>
-        </div>
-        <div class="g2" style="gap:8px;">
-          <div class="card">
-            <div class="c-label">Condición</div>
-            <div style="font-weight:700;font-size:13px;margin-top:3px;">Nuevo</div>
-          </div>
-          <div class="card">
-            <div class="c-label">Origen</div>
-            <div style="font-weight:700;font-size:13px;margin-top:3px;">Importado</div>
+        <div style="border:1px solid var(--gray-200);padding:14px 18px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;">
+          <div>
+            <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-400);margin-bottom:4px;">Marca declarada en ML</div>
+            <div style="font-size:14px;font-weight:700;">Original OEM &nbsp;<span class="wm wm-sm wm-navy"><span class="wm-text">hotic</span><span class="wm-dot">.</span></span></div>
           </div>
         </div>
-        <div class="al al-blue" style="margin-top:10px;">
-          <strong>Compatibilidades ML:</strong> Completar la herramienta oficial de compatibilidades de ML con todos los modelos y años. Aumenta ventas hasta un <strong>15%</strong>.
+        <div class="g2" style="gap:10px;margin-bottom:12px;">
+          <div style="border:1px solid var(--gray-200);padding:12px 16px;">
+            <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-400);margin-bottom:4px;">Condición</div>
+            <div style="font-weight:700;font-size:13px;">Nuevo</div>
+          </div>
+          <div style="border:1px solid var(--gray-200);padding:12px 16px;">
+            <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-400);margin-bottom:4px;">Origen</div>
+            <div style="font-weight:700;font-size:13px;">Importado</div>
+          </div>
+        </div>
+        <div class="al al-b">
+          <strong>Herramienta de Compatibilidades ML:</strong> completar con todos los modelos y años. Aumenta ventas hasta un <strong>15%</strong> según la plataforma.
         </div>
       </div>
 
       <div>
-        <div class="c-title" style="margin-bottom:8px;">Descripción base</div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-400);margin-bottom:10px;">Texto de descripción base</div>
         <div class="code">
 <span class="ok">PASTILLAS DE FRENO — CALIDAD OEM</span>
 Compatible: VW Bora 1.9TDI / 2.0 / Fox / Suran
-N° original: <span class="hl">1J0698151G</span>
+N° de parte original: <span class="hl">1J0698151G</span>
 
 Este producto NO se vende bajo la marca
 Volkswagen, pero cumple con todas las
@@ -562,258 +631,271 @@ estándares de calidad del fabricante original.
       </div>
     </div>
   </div>
-  <div class="s-foot"><span class="logo-svg sm">hotic.</span><span>Estrategia OEM · Mercado Libre Argentina</span></div>
+  <div class="foot">
+    <span class="wm wm-sm wm-navy"><span class="wm-text">hotic</span><span class="wm-dot">.</span></span>
+    <span class="foot-copy">Estrategia OEM · Mercado Libre Argentina</span>
+  </div>
 </div>
 
 
-<!-- ════════════════════════════════════════
-  SLIDE 6 — ANTIGÜEDAD DE VEHÍCULOS
-════════════════════════════════════════ -->
+<!-- ══════ SLIDE 6 — ANTIGÜEDAD ══════ -->
 <div class="slide">
-  <div class="s-head"><span>05 · Análisis del parque automotor</span><span class="chip">5 / 9</span></div>
-  <div class="s-body">
-    <div class="s-title">Los vehículos compatibles tienen entre 14 y 30 años</div>
-    <div class="s-lead">Este análisis fundamenta el posicionamiento de precio y la urgencia de liquidar el stock sin sobrevalorizarlo.</div>
+  <div class="topbar">
+    <span class="topbar-section">05 · Análisis del parque automotor</span>
+    <span class="topbar-page">5 / 9</span>
+  </div>
+  <div class="body">
+    <div class="sec-num">05</div>
+    <div class="h1">Los vehículos compatibles tienen 14 a 30 años</div>
+    <div class="lead">Este análisis fundamenta el posicionamiento de precio y la urgencia de liquidar el stock sin sobrevalorizarlo.</div>
 
-    <table style="margin-bottom:16px;">
-      <tr><th>Vehículo</th><th>Fabricación</th><th>Antigüedad 2026</th><th>Perfil del comprador</th></tr>
-      <tr><td>VW Gol G3/G4</td><td>1995–2012</td><td><strong>14 a 31 años</strong></td><td>Busca precio mínimo</td></tr>
-      <tr><td>VW Bora</td><td>1998–2010</td><td><strong>16 a 28 años</strong></td><td>Popular, presupuesto ajustado</td></tr>
-      <tr><td>VW Golf IV (MK4)</td><td>1997–2003</td><td><strong>23 a 29 años</strong></td><td>Clásico, mercado nicho</td></tr>
-      <tr><td>VW Fox / Suran</td><td>2004–2013</td><td><strong>13 a 22 años</strong></td><td>Segmento bajo/medio</td></tr>
-      <tr><td>VW Passat B5</td><td>1996–2005</td><td><strong>21 a 30 años</strong></td><td>Mercado muy reducido</td></tr>
-      <tr><td>Audi A3 (8L/8P)</td><td>1996–2012</td><td><strong>14 a 30 años</strong></td><td>Sensible al precio</td></tr>
-      <tr><td>Audi A4 B6/B7 (8E)</td><td>2000–2008</td><td><strong>18 a 26 años</strong></td><td>Entusiasta, calidad-precio</td></tr>
-      <tr><td>Ford Focus MK1/MK2</td><td>2002–2013</td><td><strong>13 a 24 años</strong></td><td>Masivo, alta competencia</td></tr>
+    <table class="tbl mb16">
+      <tr><th>Vehículo</th><th>Años de fabricación</th><th>Antigüedad 2026</th><th>Perfil del comprador</th></tr>
+      <tr><td>VW Gol G3 / G4</td><td>1995 – 2012</td><td><strong>14 a 31 años</strong></td><td>Busca precio mínimo</td></tr>
+      <tr><td>VW Bora</td><td>1998 – 2010</td><td><strong>16 a 28 años</strong></td><td>Popular, presupuesto ajustado</td></tr>
+      <tr><td>VW Golf IV (MK4)</td><td>1997 – 2003</td><td><strong>23 a 29 años</strong></td><td>Clásico, mercado nicho</td></tr>
+      <tr><td>VW Fox / Suran</td><td>2004 – 2013</td><td><strong>13 a 22 años</strong></td><td>Segmento bajo/medio</td></tr>
+      <tr><td>VW Passat B5</td><td>1996 – 2005</td><td><strong>21 a 30 años</strong></td><td>Mercado muy reducido</td></tr>
+      <tr><td>Audi A3 (8L / 8P)</td><td>1996 – 2012</td><td><strong>14 a 30 años</strong></td><td>Sensible al precio</td></tr>
+      <tr><td>Audi A4 B6 / B7</td><td>2000 – 2008</td><td><strong>18 a 26 años</strong></td><td>Entusiasta, calidad-precio</td></tr>
+      <tr><td>Ford Focus MK1 / MK2</td><td>2002 – 2013</td><td><strong>13 a 24 años</strong></td><td>Masivo, alta competencia de precio</td></tr>
     </table>
 
-    <div class="al al-amber">
+    <div class="al al-a">
       <strong>Conclusión:</strong> El 80% del stock de pastillas corresponde a vehículos de más de 14 años. El propietario de un auto viejo no invierte el valor de un repuesto original. <strong>Precio de original = cero ventas. Precio competitivo = rotación real del stock.</strong>
     </div>
   </div>
-  <div class="s-foot"><span class="logo-svg sm">hotic.</span><span>Estrategia OEM · Mercado Libre Argentina</span></div>
+  <div class="foot">
+    <span class="wm wm-sm wm-navy"><span class="wm-text">hotic</span><span class="wm-dot">.</span></span>
+    <span class="foot-copy">Estrategia OEM · Mercado Libre Argentina</span>
+  </div>
 </div>
 
 
-<!-- ════════════════════════════════════════
-  SLIDE 7 — PRECIO
-════════════════════════════════════════ -->
+<!-- ══════ SLIDE 7 — PRECIOS ══════ -->
 <div class="slide">
-  <div class="s-head"><span>06 · Estrategia de precios</span><span class="chip">6 / 9</span></div>
-  <div class="s-body">
-    <div class="s-title">El precio correcto tiene tres techos</div>
-    <div class="s-lead">No podemos estar por encima de ninguno de estos límites si queremos vender.</div>
+  <div class="topbar">
+    <span class="topbar-section">06 · Estrategia de precios</span>
+    <span class="topbar-page">6 / 9</span>
+  </div>
+  <div class="body">
+    <div class="sec-num">06</div>
+    <div class="h1">El precio tiene tres techos que no podemos superar</div>
+    <div class="lead">Posicionarse por encima de cualquiera de estos límites resulta en cero ventas.</div>
 
     <div class="g2">
       <div>
-        <div class="c-title" style="margin-bottom:14px;">Escala de precio relativo al original genuino</div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-400);margin-bottom:16px;">Precio relativo al genuino original</div>
 
-        <div class="pbar">
-          <div class="pbar-lbl"><span>🏭 Original genuino VW / Audi / Ford</span><span>100%</span></div>
-          <div class="pbar-track"><div class="pbar-fill" style="width:100%;background:var(--navy);"></div></div>
+        <div class="pb">
+          <div class="pb-row"><span>Original genuino VW / Audi / Ford</span><span><strong>100%</strong></span></div>
+          <div class="pb-track"><div class="pb-fill" style="width:100%;background:var(--vw-navy);"></div></div>
         </div>
-        <div class="pbar">
-          <div class="pbar-lbl"><span>🔵 Textar / TRW / ATE / Bosch</span><span>75–85%</span></div>
-          <div class="pbar-track"><div class="pbar-fill" style="width:82%;background:#3b82f6;"></div></div>
+        <div class="pb">
+          <div class="pb-row"><span>Textar / TRW / ATE / Bosch</span><span><strong>75–85%</strong></span></div>
+          <div class="pb-track"><div class="pb-fill" style="width:82%;background:#3b82f6;"></div></div>
         </div>
-        <div class="pbar">
-          <div class="pbar-lbl" style="font-weight:700;color:var(--green);"><span>✅ Original OEM hotic. — ZONA IDEAL</span><span>55–70%</span></div>
-          <div class="pbar-track"><div class="pbar-fill" style="width:63%;background:var(--green);"></div></div>
+        <div class="pb">
+          <div class="pb-row" style="font-weight:700;color:var(--green);"><span>✅ Original OEM hotic. — ZONA IDEAL</span><span>55–70%</span></div>
+          <div class="pb-track"><div class="pb-fill" style="width:63%;background:var(--green);"></div></div>
         </div>
-        <div class="pbar">
-          <div class="pbar-lbl"><span>⚪ Genérico sin marca</span><span>35–45%</span></div>
-          <div class="pbar-track"><div class="pbar-fill" style="width:40%;background:#cbd5e1;"></div></div>
+        <div class="pb">
+          <div class="pb-row"><span>Genérico sin marca</span><span><strong>35–45%</strong></span></div>
+          <div class="pb-track"><div class="pb-fill" style="width:40%;background:var(--gray-200);"></div></div>
         </div>
 
-        <div class="al al-green" style="margin-top:14px;">
-          Estar al <strong>55–70%</strong> transmite calidad (no somos los más baratos) sin competir con marcas con distribución formal.
+        <div class="al al-g mt16">
+          Al <strong>55–70%</strong> transmitimos calidad sin competir con marcas que tienen distribución formal y garantía documentada.
         </div>
       </div>
 
       <div>
-        <div class="c-title" style="margin-bottom:10px;">Ajuste por antigüedad del vehículo</div>
-        <table style="margin-bottom:16px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-400);margin-bottom:12px;">Ajuste por antigüedad del vehículo</div>
+        <table class="tbl mb16">
           <tr><th>Antigüedad</th><th>Precio sugerido</th></tr>
-          <tr><td>10–14 años</td><td><span class="b b-blue">60–70% del original</span></td></tr>
-          <tr><td>15–20 años</td><td><span class="b b-amber">50–60% del original</span></td></tr>
-          <tr><td>+20 años</td><td><span class="b b-green">40–50% del original</span></td></tr>
+          <tr><td>10–14 años</td><td><span class="bx bx-b">60–70% del original</span></td></tr>
+          <tr><td>15–20 años</td><td><span class="bx bx-a">50–60% del original</span></td></tr>
+          <tr><td>+20 años</td><td><span class="bx bx-g">40–50% del original</span></td></tr>
         </table>
 
-        <div class="c-title" style="margin-bottom:8px;">¿Por qué no podemos ir más alto?</div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-400);margin-bottom:8px;">¿Por qué no podemos ir más alto?</div>
         <ul class="chk">
           <li>El auto vale menos que repararlo con repuesto original</li>
           <li>Marcas líderes tienen garantía documentada y red formal</li>
-          <li>Stock inmovilizado 10 años: liquidar con margen, no maximizar precio</li>
+          <li>Stock inmovilizado 10 años: el objetivo es liquidar, no maximizar por unidad</li>
           <li>Alta competencia de genéricos en ML para estos modelos</li>
         </ul>
       </div>
     </div>
   </div>
-  <div class="s-foot"><span class="logo-svg sm">hotic.</span><span>Estrategia OEM · Mercado Libre Argentina</span></div>
+  <div class="foot">
+    <span class="wm wm-sm wm-navy"><span class="wm-text">hotic</span><span class="wm-dot">.</span></span>
+    <span class="foot-copy">Estrategia OEM · Mercado Libre Argentina</span>
+  </div>
 </div>
 
 
-<!-- ════════════════════════════════════════
-  SLIDE 8 — VALIDACIÓN
-════════════════════════════════════════ -->
+<!-- ══════ SLIDE 8 — VALIDACIÓN ══════ -->
 <div class="slide">
-  <div class="s-head"><span>07 · Validación en fuentes primarias</span><span class="chip">7 / 9</span></div>
-  <div class="s-body">
-    <div class="s-title">Cada decisión fue verificada en fuentes reales</div>
-    <div class="s-lead">Boletín Oficial Argentina · Políticas Mercado Libre · Brand Protection Program · INPI · Normativa vigente</div>
+  <div class="topbar">
+    <span class="topbar-section">07 · Validación en fuentes primarias</span>
+    <span class="topbar-page">7 / 9</span>
+  </div>
+  <div class="body">
+    <div class="sec-num">07</div>
+    <div class="h1">Cada decisión fue verificada en fuentes reales</div>
+    <div class="lead">Boletín Oficial Argentina · Políticas Mercado Libre · Brand Protection Program · INPI · Normativa vigente</div>
 
-    <table style="margin-bottom:14px;">
+    <table class="tbl mb16">
       <tr><th>Decisión estratégica</th><th>Estado</th><th>Fuente verificadora</th></tr>
-      <tr><td>No declarar VW / Audi / Ford como marca</td><td><span class="b b-green">✅ Validado</span></td><td>Brand Protection ML — suspensión permanente por infracción</td></tr>
-      <tr><td>"Original OEM hotic." como marca</td><td><span class="b b-green">✅ Validado</span></td><td>ML permite marca propia + descriptor OEM. No es marca de terceros.</td></tr>
-      <tr><td>"Original OEM" en título (SEO)</td><td><span class="b b-green">✅ Validado</span></td><td>Cientos de publicaciones activas en ML usan esta frase sin ser removidas</td></tr>
-      <tr><td>Foto genérica IA sin logos</td><td><span class="b b-green">✅ Validado</span></td><td>BPP escanea imágenes. Logos = denuncia válida de marca.</td></tr>
-      <tr><td>Descripción con aclaración "no es VW"</td><td><span class="b b-green">✅ Validado</span></td><td>Ley 24.240 Defensa del Consumidor — elimina riesgo de publicidad engañosa</td></tr>
-      <tr><td>Precio 55–70% del original genuino</td><td><span class="b b-green">✅ Validado</span></td><td>Análisis de antigüedad: 80% del stock = autos de +14 años</td></tr>
-      <tr><td>Herramienta de Compatibilidades ML</td><td><span class="b b-amber">⚠️ Ajuste</span></td><td>ML recomienda usar sección de compatibilidades además del título (+15% ventas)</td></tr>
+      <tr><td>No declarar VW / Audi / Ford como marca</td><td><span class="bx bx-g">✓ Validado</span></td><td>Brand Protection ML — suspensión permanente por infracción</td></tr>
+      <tr><td>"Original OEM hotic." como marca</td><td><span class="bx bx-g">✓ Validado</span></td><td>ML permite marca propia + descriptor OEM. No es marca de terceros.</td></tr>
+      <tr><td>"Original OEM" en título como SEO</td><td><span class="bx bx-g">✓ Validado</span></td><td>Publicaciones activas en ML usan esta frase sin ser removidas</td></tr>
+      <tr><td>Foto genérica IA sin logos de marca</td><td><span class="bx bx-g">✓ Validado</span></td><td>BPP escanea imágenes. Logos en foto = denuncia válida de marca.</td></tr>
+      <tr><td>Descripción con aclaración "no es VW"</td><td><span class="bx bx-g">✓ Validado</span></td><td>Ley 24.240 — elimina el riesgo de publicidad engañosa</td></tr>
+      <tr><td>Precio 55–70% del original genuino</td><td><span class="bx bx-g">✓ Validado</span></td><td>Análisis de antigüedad: 80% del stock = autos de +14 años</td></tr>
+      <tr><td>Herramienta de Compatibilidades ML</td><td><span class="bx bx-a">⚠ Ajuste</span></td><td>ML recomienda la sección de compatibilidades además del título (+15% ventas)</td></tr>
     </table>
 
-    <div class="al al-blue">
-      <strong>Marco legal:</strong> Ley 22.362 (Marcas y Designaciones) · Ley 24.240 (Defensa del Consumidor) · Políticas de Uso de Mercado Libre · Brand Protection Program (BPP)
+    <div class="al al-b">
+      <strong>Marco legal:</strong> Ley 22.362 (Marcas y Designaciones) · Ley 24.240 (Defensa del Consumidor) · Condiciones de uso de Mercado Libre · Brand Protection Program
     </div>
   </div>
-  <div class="s-foot"><span class="logo-svg sm">hotic.</span><span>Estrategia OEM · Mercado Libre Argentina</span></div>
+  <div class="foot">
+    <span class="wm wm-sm wm-navy"><span class="wm-text">hotic</span><span class="wm-dot">.</span></span>
+    <span class="foot-copy">Estrategia OEM · Mercado Libre Argentina</span>
+  </div>
 </div>
 
 
-<!-- ════════════════════════════════════════
-  SLIDE 9 — PUBLICACIÓN REAL ML
-════════════════════════════════════════ -->
+<!-- ══════ SLIDE 9 — PUBLICACIÓN REAL ══════ -->
 <div class="slide">
-  <div class="s-head"><span>08 · Publicación real — caso de referencia</span><span class="chip">8 / 9</span></div>
-  <div class="s-body">
-    <div class="s-title">Así luce la estrategia aplicada en Mercado Libre</div>
-    <div class="s-lead">
-      Publicación activa · +25 vendidos · 5 estrellas —&nbsp;
-      <a href="https://www.mercadolibre.com.ar/pastillas-freno-delanteras-traseras-bora-18-t-original-oem/up/MLAU168772557?pdp_filters=seller_id%3A167496483" target="_blank" style="color:var(--brand);font-weight:600;">Ver en Mercado Libre →</a>
+  <div class="topbar">
+    <span class="topbar-section">08 · Publicación real — caso de referencia</span>
+    <span class="topbar-page">8 / 9</span>
+  </div>
+  <div class="body">
+    <div class="sec-num">08</div>
+    <div class="h1">Así luce la estrategia aplicada en Mercado Libre</div>
+    <div class="lead">Publicación activa · +25 vendidos · 5 estrellas —
+      <a href="https://www.mercadolibre.com.ar/pastillas-freno-delanteras-traseras-bora-18-t-original-oem/up/MLAU168772557?pdp_filters=seller_id%3A167496483" target="_blank">Ver en Mercado Libre →</a>
     </div>
 
     <div class="ml-wrap">
-      <!-- Galería -->
       <div>
-        <div class="ml-gallery-main">
+        <div class="ml-img-main">
           <img src="https://http2.mlstatic.com/D_NQ_NP_2X_643139-MLA113682150461_062026-F.webp" alt="Pastilla de freno OEM"
-               onerror="this.parentElement.innerHTML='<div style=padding:20px;text-align:center;color:#94a3b8;font-size:12px>🖼️<br>Imagen disponible<br>con conexión a internet</div>'">
+               onerror="this.parentElement.innerHTML='<div class=ml-no-img>🖼️<br>Imagen disponible<br>con conexión a internet</div>'">
         </div>
         <div class="ml-thumbs">
           <div class="ml-thumb">
             <img src="https://http2.mlstatic.com/D_NQ_NP_2X_706313-MLA112513125394_062026-F.webp" alt="Vista 2"
-                 onerror="this.parentElement.innerHTML='<span style=font-size:11px;color:#94a3b8>Foto 2</span>'">
+                 onerror="this.parentElement.innerHTML='<span class=ml-no-img>Foto 2</span>'">
           </div>
           <div class="ml-thumb">
             <img src="https://http2.mlstatic.com/D_NQ_NP_2X_728223-MLA112513125384_062026-F.webp" alt="Vista 3"
-                 onerror="this.parentElement.innerHTML='<span style=font-size:11px;color:#94a3b8>Foto 3</span>'">
+                 onerror="this.parentElement.innerHTML='<span class=ml-no-img>Foto 3</span>'">
           </div>
         </div>
-        <div style="text-align:center;font-size:10px;color:#94a3b8;margin-top:6px;">Imágenes sin logos de marca ✓</div>
+        <div style="text-align:center;font-size:10px;color:var(--gray-400);margin-top:6px;">Sin logos de marca en fotografía ✓</div>
       </div>
 
-      <!-- Detalle del listing -->
       <div>
-        <div style="font-size:11px;color:#94a3b8;margin-bottom:5px;">Nuevo &nbsp;|&nbsp; +25 vendidos</div>
+        <div style="font-size:11px;color:var(--gray-400);margin-bottom:6px;">Nuevo &nbsp;·&nbsp; +25 vendidos</div>
 
-        <div class="ml-title">
+        <div style="font-size:17px;font-weight:800;color:var(--vw-navy);line-height:1.25;margin-bottom:8px;">
           Pastillas Freno Delanteras Traseras Bora 1.8 T
-          <span class="oem">Original Oem</span>
+          <span style="color:var(--h-blue)">Original Oem</span>
         </div>
-        <div style="margin:5px 0 8px;">
-          <span class="b b-green">✓ No declara "Original VW"</span>&nbsp;
-          <span class="b b-green">✓ "OEM" como descriptor SEO</span>
-        </div>
-
-        <div class="ml-stars">★★★★★ <span style="color:#94a3b8;font-size:11px;">5.0 (2 opiniones)</span></div>
-
-        <div style="display:inline-block;background:#00a650;color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:3px;margin-bottom:8px;">↓ BAJÓ DE PRECIO</div>
-
-        <div class="ml-price-big">$ 99.999</div>
-        <div class="ml-green-text">Cuota promocionada en 6 cuotas de $ 22.498,11</div>
-        <div class="ml-muted">Precio sin impuestos: $ 82.644</div>
-
-        <div class="ml-bulk">
-          <strong>5 unidades</strong> &nbsp;
-          <span style="font-weight:700;">$89.999/u.</span>
-          <span class="b b-red" style="margin-left:6px;">10% OFF</span>
+        <div style="margin-bottom:10px;">
+          <span class="bx bx-g">✓ No declara "Original VW"</span>&nbsp;
+          <span class="bx bx-g">✓ "OEM" como descriptor SEO</span>
         </div>
 
-        <div class="ml-desc">
-          <div class="ml-desc-title">Descripción</div>
-          <div style="font-size:10px;color:#94a3b8;margin-bottom:4px;font-style:italic;">CONSULTAR SIEMPRE CON NUMERO DE CHASIS</div>
-          <p class="ml-desc-key" style="margin-bottom:5px;">Es una pieza OEM, no vendemos bajo la marca VW pero la calidad es equivalente al equipo original.</p>
-          <p style="font-size:11px;">Las pastillas de freno delanteras y traseras para Bora 1.8T son una opción ideal para quienes buscan calidad y rendimiento. Diseño específico para VW, SEAT, AUDI, BENZ y BMW.</p>
+        <div style="color:#f59e0b;font-size:13px;margin-bottom:8px;">★★★★★ <span style="color:var(--gray-400);font-size:11px;">5.0 · 2 opiniones</span></div>
+
+        <div style="display:inline-block;background:#00a650;color:#fff;font-size:10px;font-weight:700;padding:3px 10px;letter-spacing:.04em;margin-bottom:10px;">↓ BAJÓ DE PRECIO</div>
+
+        <div style="font-size:28px;font-weight:800;color:var(--vw-navy);letter-spacing:-.5px;margin-bottom:2px;">$ 99.999</div>
+        <div style="font-size:11.5px;color:var(--green);margin-bottom:2px;">6 cuotas de $ 22.498,11</div>
+        <div style="font-size:11px;color:var(--gray-400);margin-bottom:10px;">Sin impuestos: $ 82.644</div>
+
+        <div style="border:1px solid var(--gray-200);padding:10px 14px;font-size:12.5px;margin-bottom:12px;">
+          <strong>5 unidades</strong> &nbsp; $89.999/u. &nbsp;<span class="bx bx-r">10% OFF</span>
         </div>
-        <div style="margin-top:7px;">
-          <span class="b b-green">✓ Aclara que no es VW</span>&nbsp;
-          <span class="b b-green">✓ Describe calidad OEM</span>
+
+        <div style="border:1px solid var(--gray-200);padding:14px;background:var(--off-white);font-size:12px;color:var(--gray-600);line-height:1.6;">
+          <div style="font-weight:700;color:var(--vw-navy);margin-bottom:6px;font-size:13px;">Descripción</div>
+          <p style="font-weight:600;color:var(--green);margin-bottom:6px;">Es una pieza OEM, no vendemos bajo la marca VW pero la calidad es equivalente al equipo original.</p>
+          <p>Las pastillas de freno delanteras y traseras para Bora 1.8T son una opción ideal para quienes buscan calidad y rendimiento. Diseño específico para VW, SEAT, AUDI, BENZ y BMW.</p>
+        </div>
+        <div style="margin-top:8px;">
+          <span class="bx bx-g">✓ Aclara que no es VW</span>&nbsp;
+          <span class="bx bx-g">✓ Describe calidad OEM equivalente</span>
         </div>
       </div>
     </div>
 
-    <div class="annots">
-      <div class="annot"><div class="annot-ic">📸</div><div class="annot-t">Foto genérica</div><div class="annot-s">Sin logos de marca</div></div>
-      <div class="annot"><div class="annot-ic">🔍</div><div class="annot-t">Título con OEM</div><div class="annot-s">SEO legal aplicado</div></div>
-      <div class="annot"><div class="annot-ic">📝</div><div class="annot-t">Descripción clara</div><div class="annot-s">"No vendemos como VW"</div></div>
-      <div class="annot"><div class="annot-ic">✅</div><div class="annot-t">Publicación activa</div><div class="annot-s">+25 vendidos, 5 estrellas</div></div>
+    <div class="astrip">
+      <div class="aitem"><div class="aitem-ic">📸</div><div><div class="aitem-t">Foto genérica</div><div class="aitem-s">Sin logos de marca</div></div></div>
+      <div class="aitem"><div class="aitem-ic">🔍</div><div><div class="aitem-t">Título con OEM</div><div class="aitem-s">SEO legal aplicado</div></div></div>
+      <div class="aitem"><div class="aitem-ic">📝</div><div><div class="aitem-t">Descripción clara</div><div class="aitem-s">"No vendemos como VW"</div></div></div>
+      <div class="aitem"><div class="aitem-ic">✅</div><div><div class="aitem-t">Publicación activa</div><div class="aitem-s">+25 vendidos · 5 estrellas</div></div></div>
     </div>
   </div>
-  <div class="s-foot"><span class="logo-svg sm">hotic.</span><span>Estrategia OEM · Mercado Libre Argentina</span></div>
+  <div class="foot">
+    <span class="wm wm-sm wm-navy"><span class="wm-text">hotic</span><span class="wm-dot">.</span></span>
+    <span class="foot-copy">Estrategia OEM · Mercado Libre Argentina</span>
+  </div>
 </div>
 
 
-<!-- ════════════════════════════════════════
-  SLIDE 10 — PRÓXIMOS PASOS
-════════════════════════════════════════ -->
+<!-- ══════ SLIDE 10 — PRÓXIMOS PASOS ══════ -->
 <div class="slide">
-  <div class="s-head"><span>09 · Próximos pasos</span><span class="chip">9 / 9</span></div>
-  <div class="s-body">
-    <div class="s-title">Hoja de ruta operativa</div>
-    <div class="s-lead">Fase piloto → validación → escala. Movimiento ordenado sobre las 1.642 referencias del inventario.</div>
+  <div class="topbar">
+    <span class="topbar-section">09 · Próximos pasos</span>
+    <span class="topbar-page">9 / 9</span>
+  </div>
+  <div class="body">
+    <div class="sec-num">09</div>
+    <div class="h1">Hoja de ruta operativa</div>
+    <div class="lead">Fase piloto → validación → escala sobre las 1.642 referencias del inventario.</div>
 
     <div class="g2">
       <div>
-        <table>
-          <tr><th>#</th><th>Acción</th><th>Quién</th></tr>
-          <tr><td style="font-weight:700;color:var(--brand)">1</td><td>Aprobación de esta estrategia por el Owner</td><td>Owner</td></tr>
-          <tr><td style="font-weight:700;color:var(--brand)">2</td><td>Generación de imágenes IA para pastillas, filtros y bombas</td><td>Consultor</td></tr>
-          <tr><td style="font-weight:700;color:var(--brand)">3</td><td>Carga piloto de 10 SKUs de pastillas (mayor volumen)</td><td>Consultor</td></tr>
-          <tr><td style="font-weight:700;color:var(--brand)">4</td><td>Monitoreo 15 días: visitas, conversiones, preguntas</td><td>Consultor</td></tr>
-          <tr><td style="font-weight:700;color:var(--brand)">5</td><td>Ajuste de precio si la conversión es baja</td><td>Ambos</td></tr>
-          <tr><td style="font-weight:700;color:var(--brand)">6</td><td>Completar sección de Compatibilidades en cada publicación</td><td>Consultor</td></tr>
-          <tr><td style="font-weight:700;color:var(--brand)">7</td><td>Escalar al resto de los 85 SKUs de pastillas</td><td>Consultor</td></tr>
-          <tr><td style="font-weight:700;color:var(--brand)">8</td><td>Expandir a filtros, bombas y bujías</td><td>Consultor</td></tr>
+        <table class="tbl">
+          <tr><th>#</th><th>Acción</th><th>Responsable</th></tr>
+          <tr><td style="color:var(--h-blue);font-weight:800;">1</td><td>Aprobación de esta estrategia por el Owner</td><td>Owner</td></tr>
+          <tr><td style="color:var(--h-blue);font-weight:800;">2</td><td>Generación de imágenes IA para pastillas, filtros y bombas</td><td>Consultor</td></tr>
+          <tr><td style="color:var(--h-blue);font-weight:800;">3</td><td>Carga piloto de 10 SKUs de pastillas (mayor volumen)</td><td>Consultor</td></tr>
+          <tr><td style="color:var(--h-blue);font-weight:800;">4</td><td>Monitoreo 15 días: visitas, conversiones, preguntas</td><td>Consultor</td></tr>
+          <tr><td style="color:var(--h-blue);font-weight:800;">5</td><td>Ajuste de precio si la conversión es baja</td><td>Ambos</td></tr>
+          <tr><td style="color:var(--h-blue);font-weight:800;">6</td><td>Completar sección de Compatibilidades en cada publicación</td><td>Consultor</td></tr>
+          <tr><td style="color:var(--h-blue);font-weight:800;">7</td><td>Escalar al resto de los 85 SKUs de pastillas</td><td>Consultor</td></tr>
+          <tr><td style="color:var(--h-blue);font-weight:800;">8</td><td>Expandir a filtros, bombas y bujías</td><td>Consultor</td></tr>
         </table>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:12px;">
-        <div class="al al-green">
-          <strong>Objetivo piloto:</strong> Validar precio, respuesta de mercado y conversión antes de escalar las 1.642 referencias.
+        <div class="al al-g">
+          <strong>Objetivo del piloto:</strong> validar precio, respuesta de mercado y tasa de conversión antes de escalar las 1.642 referencias.
+        </div>
+        <div class="al al-b">
+          <strong>Lo que logramos desde el día 1:</strong> publicación sin riesgo legal, SEO optimizado para búsquedas de "original" e imagen profesional de la marca hotic.
         </div>
 
-        <div class="card green">
-          <div class="c-label">Lo que hacemos bien desde el día 1</div>
-          <ul class="chk" style="margin-top:6px;">
-            <li>Publicación sin riesgo legal</li>
-            <li>SEO optimizado para búsquedas de "original"</li>
-            <li>Imagen profesional de la marca hotic.</li>
-            <li>Descripción que genera confianza</li>
-          </ul>
-        </div>
-
-        <div class="card" style="background:var(--navy);border:none;text-align:center;padding:22px;">
-          <div style="margin-bottom:8px;"><span class="logo-svg lg">hotic.</span></div>
-          <div style="color:#94a3b8;font-size:11px;margin-top:6px;">
-            Repuestos de calidad para tu vehículo<br>
-            Mercado Libre Argentina · Junio 2026
-          </div>
+        <!-- CIERRE MARCA -->
+        <div class="close-card">
+          <span class="wm wm-lg wm-white"><span class="wm-text">hotic</span><span class="wm-dot">.</span></span>
+          <p>Repuestos de calidad para tu vehículo<br>Mercado Libre Argentina · Junio 2026</p>
         </div>
       </div>
     </div>
   </div>
-  <div class="s-foot"><span class="logo-svg sm">hotic.</span><span>Estrategia OEM · Mercado Libre Argentina · Junio 2026</span></div>
+  <div class="foot">
+    <span class="wm wm-sm wm-navy"><span class="wm-text">hotic</span><span class="wm-dot">.</span></span>
+    <span class="foot-copy">Estrategia OEM · Mercado Libre Argentina · Junio 2026</span>
+  </div>
 </div>
 
 </body>
